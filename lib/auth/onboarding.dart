@@ -146,7 +146,7 @@ class OnBoardingState extends State<Onboarding> {
                                         );
                                       } else {
                                         Navigator.of(context).pushReplacement(
-                                            MaterialPageRoute(builder: (context) => LoginScreen()));
+                                            MaterialPageRoute(builder: (context) => SignUpScreen()));
                                       }
                                     },
                                     child: Text(
