@@ -1,8 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class Onboarding extends StatelessWidget {
+class Onboarding extends StatefulWidget {
   const Onboarding({super.key});
+
+  @override
+  OnBoardingState createState() => OnBoardingState();
+}
+
+class OnBoardingState extends State<Onboarding> {
+  final PageController pageController = PageController();
+  int index = 0;
+
+  List<Map<String, String>> onboardingData = [
+    {
+      "image": "assets/images/OnBoarding_1.png",
+      "title": "Fresh & Healthy Every Day",
+      "description": "Dapatkan sayur segar langsung dari petani ke rumah Anda. "
+          "Kualitas terbaik untuk hidup lebih sehat!"
+    },
+    {
+      "image": "assets/images/OnBoarding_2.png",
+      "title": "Dukung Petani Lokal",
+      "description": "Pesan sayur favorit Anda dalam hitungan detik. Tanpa ribet, "
+          "tanpa antri, langsung diantar ke rumah!"
+    },
+    {
+      "image": "assets/images/OnBoarding_3.png",
+      "title": "Belanja Mudah, Hemat Waktu",
+      "description": "Setiap pembelian Anda membantu petani lokal berkembang. "
+          "Makan sehat sambil berbagi kebaikan!"
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -29,105 +58,115 @@ class Onboarding extends StatelessWidget {
             ],
           ),
           SizedBox(height: 36),
-          Image.asset(
-            'assets/images/9328136 1.png',
-            height: 299,
-            width: 299,
-          ),
-          SizedBox(height: 59),
           Expanded(
-            child: Container(
-              width: double.infinity,
-              height: 341,
-              decoration: BoxDecoration(
-                color: Color(0XFF25475F),
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(50),
-                  topRight: Radius.circular(50),
-                ),
-              ),
-              child:
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SizedBox(height: 56,),
-                  Text(
-                    'Fresh & Healthy Every Day',
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      color: Colors.white
+            child: PageView.builder(
+              controller: pageController,
+              physics: NeverScrollableScrollPhysics(),
+              onPageChanged: (int pageIndex) {
+                setState(() {
+                  index = pageIndex;
+                });
+              },
+              itemCount: onboardingData.length,
+              itemBuilder: (context, index) {
+                return Column(
+                  children: [
+                    Image.asset(
+                      onboardingData[index]['image']!,
+                      height: 299,
+                      width: 299,
                     ),
-                  ),
-                  SizedBox(height: 24,),
-                  Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 57),
-                    child: Text(
-                      'Dapatkan sayur segar langsung dari petani ke '
-                          'rumah Anda. Kualitas terbaik untuk hidup lebih sehat!',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 16,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 52,),
-                  Center(
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Expanded (child:
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                    SizedBox(height: 59),
+                    Expanded(
+                      child: Container(
+                        width: double.infinity,
+                        height: 341,
+                        decoration: BoxDecoration(
+                          color: Color(0XFF25475F),
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(50),
+                            topRight: Radius.circular(50),
+                          ),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            SizedBox(height: 56),
+                            Text(
+                              onboardingData[index]['title']!,
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                            SizedBox(height: 24),
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 57),
+                              child: Text(
+                                onboardingData[index]['description']!,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 52),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 56),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  SvgPicture.asset(
-                                    'assets/icons/Line 45.svg',
-                                    height: 6,
+                                  TextButton(
+                                    onPressed: () {
+                                      if (index > 0) {
+                                        pageController.previousPage(
+                                          duration: Duration(milliseconds: 300),
+                                          curve: Curves.easeIn,
+                                        );
+                                      }
+                                    },
+                                    child: Text(
+                                      'Back',
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.white,
+                                      ),
+                                    ),
                                   ),
-                                  SizedBox(width: 14),
-                                  SvgPicture.asset(
-                                    'assets/icons/Line 46.svg',
-                                    height: 6,
-                                  ),
-                                  SizedBox(width: 14),
-                                  SvgPicture.asset(
-                                    'assets/icons/Line 46.svg',
-                                    height: 6,
+                                  TextButton(
+                                    onPressed: () {
+                                      if (index < onboardingData.length - 1) {
+                                        pageController.nextPage(
+                                          duration: Duration(milliseconds: 300),
+                                          curve: Curves.easeIn,
+                                        );
+                                      } else {
+                                       //Kalo abis screennya
+                                      }
+                                    },
+                                    child: Text(
+                                      'Next',
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w700,
+                                        color: Color(0XFFFCAE51),
+                                      ),
+                                    ),
                                   ),
                                 ],
-                              )
-                          ),
-                          SizedBox(width: 52),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 52,),
-                  Row(
-                    children: [
-                      Padding(padding: EdgeInsets.symmetric(horizontal: 30)),
-                      Text('Data',
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.white
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      SizedBox(width: 225,),
-                      Text('Next',
-                      style: TextStyle(
-                        fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                          color: Color(0XFFFCAE51)
-                      ),)
-                    ],
-                  )
-                ],
-              ),
+                    )
+                  ],
+                );
+              },
             ),
           ),
         ],
