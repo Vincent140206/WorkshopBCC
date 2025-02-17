@@ -48,7 +48,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(height: 13,),
                 TextField(
                   controller: nameController,
-                  obscureText: false,
 
                 ),
               ],
