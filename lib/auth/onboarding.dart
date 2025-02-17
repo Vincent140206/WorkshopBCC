@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:workshop1/auth/loginscreen.dart';
 
 class Onboarding extends StatefulWidget {
   const Onboarding({super.key});
@@ -145,7 +145,8 @@ class OnBoardingState extends State<Onboarding> {
                                           curve: Curves.easeIn,
                                         );
                                       } else {
-                                       //Kalo abis screennya
+                                        Navigator.of(context).pushReplacement(
+                                            MaterialPageRoute(builder: (context) => LoginScreen()));
                                       }
                                     },
                                     child: Text(
