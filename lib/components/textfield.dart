@@ -4,12 +4,14 @@ class Textfield extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   final bool obscureText;
+  final dynamic fillColor;
 
   const Textfield({
     super.key,
     required this.controller,
     required this.hintText,
     required this.obscureText,
+    required this.fillColor,
   });
 
   @override
