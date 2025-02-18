@@ -24,7 +24,7 @@ class LoginScreenState extends State<LoginScreen> {
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  SizedBox(height: 90,),
+                  SizedBox(height: 109,),
                   Text(
                     'Masuk',
                     style: TextStyle(
@@ -41,7 +41,7 @@ class LoginScreenState extends State<LoginScreen> {
                   ),
                   SizedBox(height: 77,),
                   Image.asset(
-                    'assets/images/Logo Basic Shop 1.png',
+                      'assets/images/Logo Basic Shop 1.png',
                     width: 90,
                     height: 126.46,),
                   SizedBox(height: 77,),
@@ -59,7 +59,8 @@ class LoginScreenState extends State<LoginScreen> {
                   Textfield(
                     controller: usernameController,
                     hintText: 'Supernova',
-                    obscureText: false, fillColor: null,
+                    obscureText: false,
+                    fillColor: Color(0XFFEEF6FC),
                   ),
                   SizedBox(height: 24,),
                   Padding(
@@ -76,17 +77,18 @@ class LoginScreenState extends State<LoginScreen> {
                   Textfield(
                     controller: passwordController,
                     hintText: '********',
-                    obscureText: false, fillColor: null,
+                    obscureText: false,
+                    fillColor: Color(0XFFEEF6FC),
                   ),
                   SizedBox(height: 10,),
                   Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 30),
-                      child: Align(
-                        alignment: Alignment.centerRight,
-                        child: Text(
-                          'Lupa password?',
-                        ),
-                      )
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: Text(
+                        'Lupa password?',
+                      ),
+                    )
                   ),
                   SizedBox(height: 77,),
                   Container(
@@ -137,13 +139,12 @@ class LoginScreenState extends State<LoginScreen> {
                         ' Daftar',
                         style: TextStyle(
                           fontSize: 12,
-                          color: Color(0XFF25475F),
+                          color: Color(0XFFF25475),
                         ),
                       )
                       )
                     ],
-                  ),
-                ]
+                  ),                ]
             )
         )
     );
