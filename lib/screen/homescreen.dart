@@ -122,7 +122,7 @@ class HomeScreenState extends State<HomeScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: EdgeInsets.only(left: 10, top: 9, right: 10),
+                            padding: EdgeInsets.only(left: 10, top: 10, right: 10),
                             child: Image.asset(
                               product.imagePath,
                               width: double.infinity,
