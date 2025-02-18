@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:workshop1/auth/loginscreen.dart';
+import 'package:workshop1/auth/signupscreen.dart';
 
 class Onboarding extends StatefulWidget {
   const Onboarding({super.key});
@@ -11,6 +11,8 @@ class Onboarding extends StatefulWidget {
 class OnBoardingState extends State<Onboarding> {
   final PageController pageController = PageController();
   int index = 0;
+  bool isTransparent = false;
+
 
   List<Map<String, String>> onboardingData = [
     {
@@ -128,12 +130,15 @@ class OnBoardingState extends State<Onboarding> {
                                         );
                                       }
                                     },
-                                    child: Text(
-                                      'Back',
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w700,
-                                        color: Colors.white,
+                                    child: Opacity(
+                                      opacity: index > 0 ? 1 : 0,
+                                      child: Text(
+                                        'Back',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w700,
+                                          color: Colors.white,
+                                        ),
                                       ),
                                     ),
                                   ),
